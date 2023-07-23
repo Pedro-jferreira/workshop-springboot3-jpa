@@ -24,24 +24,24 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MMM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
 	private Integer orderStatus;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "client-id")
+	@JoinColumn(name = "client_id")
 	private User client;
 
 	public Order() {
 
 	}
 
-	public Order(Long id,OrderStatus ordersStatus, Instant moment,  User client) {
+	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		setOrderStatus(ordersStatus);
+		setOrderStatus(orderStatus);
 		this.client = client;
 	}
 

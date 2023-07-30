@@ -16,6 +16,7 @@ import com.pedrojferreiradev.course.Repositories.UserRepository;
 import com.pedrojferreiradev.course.entities.Category;
 import com.pedrojferreiradev.course.entities.Order;
 import com.pedrojferreiradev.course.entities.OrderItem;
+import com.pedrojferreiradev.course.entities.Payment;
 import com.pedrojferreiradev.course.entities.Product;
 import com.pedrojferreiradev.course.entities.User;
 import com.pedrojferreiradev.course.entities.enums.OrderStatus;
@@ -78,7 +79,10 @@ public class TestConfig implements CommandLineRunner {
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
-
+		
+		Payment paymant = new Payment(null, Instant.parse("2019-06-20T21:00:07Z"), o1);
+		o1.setPayment(paymant);
+		orderRepository.save(o1);
 		
 		
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pedrojferreiradev.course.entities.User;
+import com.pedrojferreiradev.course.services.ApiResponse;
 import com.pedrojferreiradev.course.services.UserService;
 
 @RestController
@@ -46,9 +47,11 @@ public class UserResource {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
+	public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
 		service.delete(id);
-		return ResponseEntity.noContent().build();
+        String message = String.format("Usuário com ID %d foi apagado com sucesso!", id);
+        ApiResponse response = new ApiResponse(message);
+        return ResponseEntity.ok(response);
 	}
 	
 	@PutMapping(value = "/{id}")
